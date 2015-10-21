@@ -9,3 +9,6 @@ in_prep/genbioconductor.bib
 dropbox
 Rmd/GSE11675
 
+GSE11675/
+genbioconductor.Rproj
+*.Rproj.user
