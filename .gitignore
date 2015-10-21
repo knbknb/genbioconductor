@@ -12,3 +12,4 @@ Rmd/GSE11675
 GSE11675/
 genbioconductor.Rproj
 *.Rproj.user
+.Rproj.user
