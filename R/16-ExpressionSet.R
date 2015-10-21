@@ -4,8 +4,8 @@ library(ALL)
 library(hgu95av2.db)
 
 ## ----biocLite, eval=FALSE------------------------------------------------
-## source("http://www.bioconductor.org/biocLite.R")
-## biocLite(c("Biobase", "ALL", "hgu95av2.db"))
+# source("http://www.bioconductor.org/biocLite.R")
+# biocLite(c("Biobase", "ALL", "hgu95av2.db"))
 
 ## ----ALL-----------------------------------------------------------------
 library(ALL)
@@ -32,6 +32,9 @@ head(pData(ALL))
 head(pData(ALL)$sex)
 head(ALL$sex)
 
+hist(pData(ALL)$age, 40)
+plot(density(pData(ALL)$age,  na.rm=TRUE))
+
 ## ----subset--------------------------------------------------------------
 ALL[,1:5]
 ALL[1:10,]
@@ -53,6 +56,10 @@ ids
 library(hgu95av2.db)
 as.list(hgu95av2ENTREZID[ids])
 
+idssa <- sampleNames(ALL)
+hgu95av2ORGANISM[idssa]
+
+as.list(hgu95av2SYMBOL[ids])
 ## ----varLabels-----------------------------------------------------------
 pD <- phenoData(ALL)
 varLabels(pD)

@@ -6,10 +6,13 @@ library(GenomicRanges)
 ## biocLite(c("GenomicRanges"))
 
 ## ----RleEx1--------------------------------------------------------------
+?Rle
+
 rl <- Rle(c(1,1,1,1,2,2,3,3,2,2))
 rl
 runLength(rl)
 runValue(rl)
+# convert back
 as.numeric(rl)
 
 ## ----aggregate-----------------------------------------------------------
@@ -22,6 +25,7 @@ rl <- coverage(ir)
 rl
 
 ## ----slice---------------------------------------------------------------
+# gets all elements greater than or equal to two
 slice(rl, 2)
 
 ## ----views---------------------------------------------------------------
@@ -35,12 +39,13 @@ mean(vi)
 gr <- GRanges(seqnames = "chr1", ranges = IRanges(start = 1:10, width = 3))
 rl <- coverage(gr)
 rl
-
+?coverage
 ## ----GRangesViews, error=TRUE--------------------------------------------
 grView <- GRanges("chr1", ranges = IRanges(start = 2, end = 7))
 vi <- Views(rl, grView)
 
 ## ----GRangesViews2-------------------------------------------------------
+
 vi <- Views(rl, as(grView, "RangesList"))
 vi
 vi[[1]]

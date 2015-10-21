@@ -2,11 +2,13 @@
 library(GenomicRanges)
 
 ## ----biocLite, eval=FALSE------------------------------------------------
-## source("http://www.bioconductor.org/biocLite.R")
-## biocLite(c("GenomicRanges"))
+# source("http://www.bioconductor.org/biocLite.R")
+# biocLite(c("DataFrame"))
 
 ## ----DataFrame-----------------------------------------------------------
 ir <- IRanges(start = 1:2, width = 3)
+# not a regular dataframe,
+# supports nested data structures 
 df1 <- DataFrame(iranges = ir)
 df1
 df1$iranges
@@ -17,6 +19,7 @@ df2
 gr <- GRanges(seqnames = "chr1", strand = c("+", "-", "+"),
               ranges = IRanges(start = c(1,3,5), width = 3))
 values(gr) <- DataFrame(score = c(0.1, 0.5, 0.3))
+# added a metadata column to the right of the DF
 gr
 
 ## ----grdollar------------------------------------------------------------
@@ -24,21 +27,29 @@ gr$score
 gr$score2 = gr$score * 0.2
 gr
 
+# major workhorses
 ## ----findOverlaps_setup--------------------------------------------------
 gr2 <- GRanges(seqnames = c("chr1", "chr2", "chr1"), strand = "*",
                ranges = IRanges(start = c(1, 3, 5), width = 3))
+# these two GRanges have different sequences and strands
 gr2
 gr
 
 ## ----findOverlaps--------------------------------------------------------
 findOverlaps(gr, gr2)
+findOverlaps(gr, gr2, ignore.strand=TRUE)  # same result
+
 
 ## ----subsetByOverlaps----------------------------------------------------
-subsetByOverlaps(gr, gr2)
+subsetByOverlaps(gr, gr2) # everything overlaps
+#switched around
+subsetByOverlaps(gr2, gr)
 
 ## ----makeGRangesFromDataFrame--------------------------------------------
+# we often encounter classic data frames 
 df <- data.frame(chr = "chr1", start = 1:3, end = 4:6, score = 7:9)
 makeGRangesFromDataFrame(df)
+# prevent taht score columns get dropped
 makeGRangesFromDataFrame(df, keep.extra.columns = TRUE)
 
 ## ----usecaseI, eval=FALSE------------------------------------------------

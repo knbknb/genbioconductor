@@ -2,8 +2,8 @@
 library(biomaRt)
 
 ## ----biocLite, eval=FALSE------------------------------------------------
-## source("http://www.bioconductor.org/biocLite.R")
-## biocLite(c("biomaRt"))
+#source("http://www.bioconductor.org/biocLite.R")
+#biocLite(c("ALL"))
 
 ## ----listMarts-----------------------------------------------------------
 head(listMarts())

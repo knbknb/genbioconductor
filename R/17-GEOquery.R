@@ -2,8 +2,8 @@
 library(GEOquery)
 
 ## ----biocLite, eval=FALSE------------------------------------------------
-## source("http://www.bioconductor.org/biocLite.R")
-## biocLite(c("GEOquery"))
+# source("http://www.bioconductor.org/biocLite.R")
+# biocLite(c("GEOquery"))
 
 ## ----getData-------------------------------------------------------------
 eList <- getGEO("GSE11675")

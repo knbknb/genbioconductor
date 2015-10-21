@@ -6,6 +6,7 @@ library(AnnotationHub)
 ## ----biocLite, eval=FALSE------------------------------------------------
 ## source("http://www.bioconductor.org/biocLite.R")
 ## biocLite(c("GenomicRanges", "rtracklayer", "AnnotationHub"))
+#biocLite(c("rtracklayer"))
 
 ## ----ahub_species--------------------------------------------------------
 ah <- AnnotationHub()
@@ -33,10 +34,14 @@ summary(width(gr1))
 table(width(gr1))
 summary(width(gr2))
 
+#table(width(gr2))
+
+# add high-quality genome annotations 
 ## ----ahub_refseq---------------------------------------------------------
 qhs <- query(ah, "RefSeq")
 qhs
 
+genes <- qhs[[1]]
 ## ----ahub_refseq_genome--------------------------------------------------
 qhs$genome
 
@@ -55,12 +60,13 @@ refseq
 table(table(refseq$name))
 
 ## ----promoters-----------------------------------------------------------
-promoters <- promoters(refseq)
-table(width(promoters))
+prom <- promoters(refseq)
+table(width(prom))
+#check default args to see how they are defined in R
 args(promoters)
 
 ## ----findOverlaps--------------------------------------------------------
-ov <- findOverlaps(promoters, gr1)
+ov <- findOverlaps(prom, gr1)
 ov
 
 ## ----queryHits-----------------------------------------------------------
@@ -68,6 +74,7 @@ length(unique(queryHits(ov))) / length(gr1)
 
 ## ----subjectHits---------------------------------------------------------
 length(unique(subjectHits(ov))) / length(promoters)
+
 
 ## ----widthPercentage-----------------------------------------------------
 sum(width(reduce(gr1))) / 10^6

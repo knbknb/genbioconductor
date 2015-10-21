@@ -1,4 +1,6 @@
 ## ----dependencies, warning=FALSE, message=FALSE--------------------------
+# interfaace to a lot of online databases
+# relatively new package, powerful
 library(AnnotationHub)
 
 ## ----biocLite, eval=FALSE------------------------------------------------

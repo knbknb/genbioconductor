@@ -22,9 +22,10 @@ Scerevisiae$chrI
 letterFrequency(Scerevisiae$chrI, "CG", as.prob = TRUE)
 
 ## ----gcGenome------------------------------------------------------------
+# set up a new BSparam object
 param <- new("BSParams", X = Scerevisiae, FUN = letterFrequency)
-head(bsapply(param, letters = "GC"))
-
+unlist(bsapply(param, letters = "GC"))
+unlist(bsapply(param, letters = "GC", as.prob=TRUE))
 ## ----gcGenome2-----------------------------------------------------------
 param <- new("BSParams", X = Scerevisiae, FUN = letterFrequency, simplify = TRUE)
 bsapply(param, letters = "GC")
@@ -32,6 +33,7 @@ bsapply(param, letters = "GC")
 ## ----gcGenome3-----------------------------------------------------------
 sum(bsapply(param, letters = "GC")) / sum(seqlengths(Scerevisiae))
 
+        
 ## ----sessionInfo, echo=FALSE---------------------------------------------
 sessionInfo()
 

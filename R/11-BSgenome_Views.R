@@ -30,6 +30,7 @@ shift(vi, 10)
 ## ----viewsVMatchPattern--------------------------------------------------
 gr <- vmatchPattern(dnaseq, Scerevisiae)
 vi2 <- Views(Scerevisiae, gr)
+vi2
 
 ## ----annotationHub-------------------------------------------------------
 ahub <- AnnotationHub()
@@ -43,7 +44,7 @@ prom <- promoters(genes)
 head(prom, n = 3)
 
 ## ----promoterGCcontent2--------------------------------------------------
-prom <- trim(prom)
+prom <- trim(prom) #get rid of negative coordinates
 promViews <- Views(Scerevisiae, prom)
 gcProm <- letterFrequency(promViews, "GC", as.prob = TRUE)
 head(gcProm)

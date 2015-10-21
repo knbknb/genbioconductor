@@ -3,8 +3,8 @@ library(GenomicFeatures)
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 
 ## ----biocLite, eval=FALSE------------------------------------------------
-## source("http://www.bioconductor.org/biocLite.R")
-## biocLite(c("GenomicFeatures", "TxDb.Hsapiens.UCSC.hg19.knownGene"))
+#  source("http://www.bioconductor.org/biocLite.R")
+#  biocLite(c("GenomicFeatures", "TxDb.Hsapiens.UCSC.hg19.knownGene"))
 
 ## ----txdb----------------------------------------------------------------
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
@@ -25,11 +25,15 @@ subsetByOverlaps(exons(txdb), gr)
 ## ----exonsBy-------------------------------------------------------------
 subsetByOverlaps(exonsBy(txdb, by = "tx"), gr)
 
+# coding sequences 
 ## ----cds-----------------------------------------------------------------
 subsetByOverlaps(cds(txdb), gr)
+# what we are really interested in:
+# coding sequences overlapping our little fragment
 subsetByOverlaps(cdsBy(txdb, by = "tx"), gr)
 
 ## ----transcriptLengths---------------------------------------------------
+# in terms of spliced RNA. gene id from above
 subset(transcriptLengths(txdb, with.cds_len = TRUE), gene_id == "100287102")
 
 ## ----sessionInfo, echo=FALSE---------------------------------------------
